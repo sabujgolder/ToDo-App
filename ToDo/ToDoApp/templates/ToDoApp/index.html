@@ -1,0 +1,31 @@
+{% extends "ToDoApp/base.html" %}
+{% block bodyblock %}
+
+  <div class="row mt-4">
+      <div class="col">
+        <form action="add" class="form-inline" method="post">
+          {% csrf_token %}
+          <h2 class="mr-4">Add Item</h2>
+          <input type="text" name="data" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Type Here">
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+      </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <ul class="list-group">
+        {% for item in items %}
+          <li class="list-group-item ">
+            {{ item.text }}
+              <div class="float-right">
+                <form action="delete/{{item.id}}" action="post">
+                  <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                </form>
+              </div>
+            </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
